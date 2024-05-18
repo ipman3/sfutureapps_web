@@ -3,6 +3,8 @@ export const dynamic = "force-dynamic"; // defaults to auto
 export async function POST(req: Request) {
   // replace the value below with the Telegram token you receive from @BotFather
   const token = "7195173599:AAEBaZpnGk_n7vs_-OuG2fSn6KjlCAn494s";
+  const chatID = -1002028789031; /// Nealika DevOp Team
+  //   const chatID = -1002067650868; /// TestingBot group
 
   try {
     const ob = await req.json();
@@ -20,7 +22,7 @@ export async function POST(req: Request) {
     → Describe:: ${body}%0A
     → ${url}`;
     const res_Telegram = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage?chat_id=-1002067650868&text=${message}`,
+      `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${message}`,
       {
         method: "POST",
         headers: {
