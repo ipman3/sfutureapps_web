@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
   try {
     const ob = await req.json();
-    const message = `New commint%0A
+    const message = `New commit%0A
     ->Repo: ${ob.repository.name}%0A
     ->Ref: ${ob.ref}%0A
     ->User:  ${ob.pusher.name}%0A
