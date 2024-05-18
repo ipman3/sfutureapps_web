@@ -6,11 +6,21 @@ export async function POST(req: Request) {
 
   try {
     const ob = await req.json();
-    // const message = `
-    // =>Repo: ${ob.repository.name}%0A=>Event: ${ob.ref}%0A=>User:  ${ob.commits[0].committer.name}%0A=>Msg: ${ob.commits[0].message}%0A=>Time: ${ob.commits[0].timestamp}`;
 
+    const assignee = ob.assignee.login ?? "No Assignee";
+    const state = ob.issue.state ?? "-";
+    const title = ob.issue.title ?? "-";
+    const body = ob.issue.body ?? "-";
+    const url = ob.issue.html_url ?? "-";
+    const issueID = ob.issue.id ?? "-";
+    const message = `New Issue (${issueID})%0A
+    → To:: ${assignee}%0A
+    → Status:: ${state}%0A
+    → Title:: ${title}%0A
+    → Describe:: ${body}%0A
+    → ${url}`;
     const res_Telegram = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage?chat_id=-1002067650868&text=${ob.hook_id}`,
+      `https://api.telegram.org/bot${token}/sendMessage?chat_id=-1002067650868&text=${message}`,
       {
         method: "POST",
         headers: {
